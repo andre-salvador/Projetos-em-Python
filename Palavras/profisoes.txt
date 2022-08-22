@@ -23,3 +23,8 @@ Silvicultor
 Trader
 Taquigrafo
 Turismologo
+Programador
+Professora
+Soldador
+Pintor
+Faxineira
