@@ -1,3 +1,7 @@
+from time import sleep
+import os
+
+
 def checar(exp):
     testa = []
     for i in exp:
@@ -26,16 +30,20 @@ def checar(exp):
 
 
 while True:
+    os.system('cls') or None
     expressao = str(input('Digite uma expressão: '))
 
     teste = checar(expressao)
     if teste:
-        print('A expressão é valida!!')
+        print('\nA expressão é valida!!')
+        sleep(2)
     else:
-        print('A expressão não é valida!!')
+        print('\nA expressão não é valida!!')
+        sleep(2)
     
     escolha = ' '
     while escolha not in 'sn':
+        os.system('cls') or None
         escolha = str(input('Deseja continuar[S/N]? ')).lower()
     
     if escolha == 'n':
