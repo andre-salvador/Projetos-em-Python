@@ -156,9 +156,6 @@ def jogo():
     letra_correta = esconder_palavra(palavra_escolhida)
     letra_correta.pop()
     
-
-    
-
     #variaveis
     acertou = False
     enforcou = False
@@ -203,6 +200,5 @@ def jogo():
         mensagem_vencedor()
     else:
         mensagem_perdedor(palavra_escolhida)
-
-if(__name__ == '__main__'):
+    
     jogo()
