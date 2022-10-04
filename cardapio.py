@@ -1,7 +1,14 @@
 import os
+import qrcode
+from PIL import Image
+from barcode import EAN13
+from barcode.writer import ImageWriter
+
 
 dic = {}
 pedido_total = []
+
+#Escolha da cerveja
 while True:
     dic.clear()
     os.system('cls') or None
@@ -57,7 +64,7 @@ while True:
     dic['quantidade'] = quantidade
     pedido_total.append(dic.copy())
 
-    while True:
+    while True:  #verificação do pedido
         escolha = str(input('Deseja continuar[S/N]: ')).lower()[0]
         if escolha in 'sn':
             break
@@ -68,22 +75,51 @@ while True:
 
 os.system('cls') or None
 
-total = 0
-cervejas_compradas = []
 
-for pedido in pedido_total:
-    if pedido['nome']:
-        cervejas_compradas.append(pedido['nome'])
+#Tratativa dos itens
+total_comprado = 0
 
-    if pedido['valor']:
-        total += pedido['valor']
+for item in pedido_total:
+    print(f'Você comprou {item["quantidade"]} {item["nome"]} e ficou R${item["valor"]:.2f}')
+    print('=-' * 30)
 
-print('-=' * 25)
-print(f'Você comprou as cervejas: ', end='')
-cont = 0
-for p in cervejas_compradas:
-    cont += 1
-    print(f'{p}', end=', ') if cont != len(cervejas_compradas) else print(f'{p}', end='.')
+    total_comprado += item['valor']
+
+print(f'O valor total foi de R${total_comprado:.2f}')
 
 print()
-print(f'O valor total ficou: R${total}')
+print(' 1- Cartão\n 2- Dinheiro\n 3- Pix\n 4- Boleto')
+
+pagamento = int(input('Qual a forma de pagamento? '))
+
+if pagamento == 1:
+    while True:    
+            dividir = int(input('Quantas vezes deseja fazer: '))
+
+            if dividir == 1:
+                print(f'O valor total ficou R${total_comprado}')
+                break
+
+            elif dividir > 1:
+                print(f'Você escolheu dividir em {dividir} vezes, ficou no total de {total_comprado / dividir}')
+                break
+
+            elif dividir == 0:
+                print('Digite um número igual ou maior que 1!!')
+
+elif pagamento == 2:
+    print(f'Você ganhou um desconto de 5% o total ficou R${total_comprado - (total_comprado * 0.05)}')
+
+elif pagamento == 3:
+    pix_qrcode = qrcode.make('chave do pix')
+    pix_qrcode.save('pix.png')
+    pix = Image.open('pix.png')
+    pix.show()
+
+elif pagamento == 4:
+    codigo = '01234567890123456789012345678901234567890123456'
+
+    codigo_barra = EAN13(codigo, writer=ImageWriter())
+    codigo_barra.save("boleto")
+    boleto = Image.open('boleto.png')
+    boleto.show()
