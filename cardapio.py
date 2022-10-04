@@ -1,8 +1,9 @@
 import os
 
 dic = {}
-total = []
+pedido_total = []
 while True:
+    dic.clear()
     os.system('cls') or None
 
     print('Escolha sua cerveja: ')
@@ -54,16 +55,35 @@ while True:
     dic['nome'] = nome
     dic['valor'] = valor
     dic['quantidade'] = quantidade
-    print('você escolheu a {}, {} unidades. Ficou R${} no total'.format(nome, quantidade, valor))
-    total.append(dic.copy())
+    pedido_total.append(dic.copy())
 
-    escolha = ' '
-    while escolha not in 'sn':
-        escolha = str(input('Deseja pedir mais cerveja[S/N]: ')).lower().strip()
-    
+    while True:
+        escolha = str(input('Deseja continuar[S/N]: ')).lower()[0]
+        if escolha in 'sn':
+            break
+        print('ERRO!! Digite apenas S ou N')
+
     if escolha == 'n':
         break
 
 os.system('cls') or None
-for i in total:
-    print(i)
+
+total = 0
+cervejas_compradas = []
+
+for pedido in pedido_total:
+    if pedido['nome']:
+        cervejas_compradas.append(pedido['nome'])
+
+    if pedido['valor']:
+        total += pedido['valor']
+
+print('-=' * 25)
+print(f'Você comprou as cervejas: ', end='')
+cont = 0
+for p in cervejas_compradas:
+    cont += 1
+    print(f'{p}', end=', ') if cont != len(cervejas_compradas) else print(f'{p}', end='.')
+
+print()
+print(f'O valor total ficou: R${total}')
