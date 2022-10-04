@@ -92,34 +92,38 @@ print(' 1- Cartão\n 2- Dinheiro\n 3- Pix\n 4- Boleto')
 
 pagamento = int(input('Qual a forma de pagamento? '))
 
-if pagamento == 1:
-    while True:    
-            dividir = int(input('Quantas vezes deseja fazer: '))
+while True:
+    if pagamento == 1:
+        while True:    
+                dividir = int(input('Quantas vezes deseja fazer: '))
 
-            if dividir == 1:
-                print(f'O valor total ficou R${total_comprado}')
-                break
+                if dividir == 1:
+                    print(f'O valor total ficou R${total_comprado}')
+                    break
 
-            elif dividir > 1:
-                print(f'Você escolheu dividir em {dividir} vezes, ficou no total de {total_comprado / dividir}')
-                break
+                elif dividir > 1:
+                    print(f'Você escolheu dividir em {dividir} vezes, ficou no total de {total_comprado / dividir}')
+                    break
 
-            elif dividir == 0:
-                print('Digite um número igual ou maior que 1!!')
+                elif dividir == 0:
+                    print('Digite um número igual ou maior que 1!!')
 
-elif pagamento == 2:
-    print(f'Você ganhou um desconto de 5% o total ficou R${total_comprado - (total_comprado * 0.05)}')
+    elif pagamento == 2:
+        print(f'Você ganhou um desconto de 5% o total ficou R${total_comprado - (total_comprado * 0.05)}')
+        break
 
-elif pagamento == 3:
-    pix_qrcode = qrcode.make('chave do pix')
-    pix_qrcode.save('pix.png')
-    pix = Image.open('pix.png')
-    pix.show()
+    elif pagamento == 3:
+        pix_qrcode = qrcode.make('chave do pix')
+        pix_qrcode.save('pix.png')
+        pix = Image.open('pix.png')
+        pix.show()
+        break
 
-elif pagamento == 4:
-    codigo = '01234567890123456789012345678901234567890123456'
+    elif pagamento == 4:
+        codigo = '0123456789012'
 
-    codigo_barra = EAN13(codigo, writer=ImageWriter())
-    codigo_barra.save("boleto")
-    boleto = Image.open('boleto.png')
-    boleto.show()
+        codigo_barra = EAN13(codigo, writer=ImageWriter())
+        codigo_barra.save("boleto")
+        boleto = Image.open('boleto.png')
+        boleto.show()
+        break
