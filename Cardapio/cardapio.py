@@ -33,7 +33,7 @@ while True:
 
     #verificação da escolha
     while True:
-        beer = int(input("Número da Cerveja: "))
+        beer = int(input("Código da Cerveja: "))
 
         if beer > 7:
             print('Digite um número entre 0 e 7')
