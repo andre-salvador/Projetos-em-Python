@@ -9,14 +9,14 @@ pedido_total = []
 
 #Colocando em dicionario ao inves de if e else
 cardapio = [
-    {'nome': 'Antartica', 'valor': 6.00},
-    {'nome': 'Skol', 'valor': 6.50},
-    {'nome': 'Brahma', 'valor': 8.20},
-    {'nome': 'Sol', 'valor': 8.25},
-    {'nome': 'Nortenha', 'valor': 16.00},
-    {'nome': 'Proibida', 'valor': 4.80},
-    {'nome': 'Devassa', 'valor': 5.90},
-    {'nome': 'Heineken', 'valor': 9.00},
+    {'nome': 'Antartica',   'valor': 6.00},
+    {'nome': 'Skol',        'valor': 6.50},
+    {'nome': 'Brahma',      'valor': 8.20},
+    {'nome': 'Sol',         'valor': 8.25},
+    {'nome': 'Nortenha',    'valor': 16.00},
+    {'nome': 'Proibida',    'valor': 4.80},
+    {'nome': 'Devassa',     'valor': 5.90},
+    {'nome': 'Heineken',    'valor': 9.00},
 ]
 
 #Escolha da cerveja
@@ -51,7 +51,7 @@ while True:
 
     #verificação do pedido
     while True:
-        escolha = str(input('Deseja continuar[S/N]: ')).lower()[0]
+        escolha = str(input('Deseja continuar comprando[S/N]: ')).lower()[0]
         if escolha in 'sn':
             break
         print('ERRO!! Digite apenas S ou N')
