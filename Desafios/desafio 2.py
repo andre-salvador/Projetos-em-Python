@@ -30,7 +30,7 @@ while True:
 
 #Mostrando os dados no console
 print('-' * 40)
-print('cod', end='')
+print('cod ', end='')
 
 for i in jogador.keys():
     print(f'{i:<15}', end='')
@@ -39,7 +39,7 @@ print()
 print('-' * 40)
 
 for k, v in enumerate(time):
-    print(f'{k:>3}' , end='')
+    print(f'{k:>3} ' , end='')
     for dados in v.values():
         print(f'{str(dados):<15}', end='')
     print()
